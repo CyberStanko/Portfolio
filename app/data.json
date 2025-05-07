@@ -1,0 +1,116 @@
+{
+  "personalInfo": {
+    "name": "INFANT STANKO F",
+    "location": "Tiruchirappalli",
+    "phone": "9025615730",
+    "email": "infantstanko2003@gmail.com",
+    "github": "https://github.com/CyberStanko",
+    "linkedin": "https://www.linkedin.com/in/infantstankof",
+    "summary": "I'm a software developer with strong skills in MERN Stack Development and Next.js, along with solid experience in Java and Python. I know how to use AI tools effectively to speed up development and improve the quality of my work. I've worked on full-stack web projects, building both powerful backends and interactive frontends. I'm good at solving problems, working with teams, and creating smart, modern solutions. I'm looking to join a forward-thinking team where I can use my skills and passion for tech to build great software."
+  },
+  "experience": [
+    {
+      "title": "Software Engineer",
+      "company": "NearTechPod",
+      "period": "15/01/2025 - Till Now",
+      "description": "Working as a Associate Software Developer in this organization and developing website and doing the allocated tasks"
+    },
+    {
+      "title": "Developer Intern & Coding Trainer Intern",
+      "company": "T4TEQ Software Solutions",
+      "period": "20/05/24 - 20/09/24",
+      "responsibilities": [
+        "Taught and mentored students in programming languages such as C, Java, Python, and more.",
+        "Clarified coding doubts and guided students to strengthen their problem-solving skills.",
+        "Conducted UI/UX design sessions using tools like Adobe Illustrator, Figma.",
+        "Collaborated with peers and students, enhancing team coordination and communication skills."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Electronics and Communication Engineering / B.E",
+      "institution": "K. Ramakrishnan College of Engineering",
+      "year": "2024",
+      "score": "7.72 CGPA"
+    },
+    {
+      "degree": "Higher Secondary School",
+      "institution": "Chelammal Matriculation Higher Secondary School",
+      "year": "2020",
+      "score": "62%"
+    },
+    {
+      "degree": "Senior Secondary Education",
+      "institution": "St. James Matriculation Higher Secondary School",
+      "year": "2018",
+      "score": "73%"
+    }
+  ],
+  "skills": [
+    "Core Java Programming",
+    "Python Programming",
+    "C Programming",
+    "SQL",
+    "Mongo DB",
+    "Express JS",
+    "React JS",
+    "Node JS",
+    "Next JS",
+    "Node-RED"
+  ],
+  "courses": [
+    "MERN STACK DEVELOPMENT (at T4TEQ Software Solutions)",
+    "JAVA Full Stack (by Wipro Talentnext)",
+    "MERN Stack Development (by PrepInsta)",
+    "Core JAVA (at T4TEQ Software Solutions)",
+    "Python (at T4TEQ Software Solutions)",
+    "Advance C (at T4TEQ Software Solutions)",
+    "MY SQL (W3 Schools)",
+    "HTML CSS (at PrepInsta)",
+    "Salesforce Developer Virtual Internship (by Smart Internz)",
+    "Carrier Essential in Software Developer (by Microsoft)"
+  ],
+  "projects": [
+    {
+      "title": "IoT based Hospital Management and Patient Caring System [REDIX]",
+      "description": "Developed an IoT-based system to monitor patient presence and vital parameters, with cloud integration for data analysis and automated alerts for threshold breaches; patented this project and also published IEEE paper."
+    },
+    {
+      "title": "FARMGROW",
+      "description": "Developed a web application offering a private cloud vault for farmers to securely store personal property details, Claimed Copyright for this project."
+    },
+    {
+      "title": "LEGATEE",
+      "description": "Developed a mobile app for beneficiaries to track fund transfers and applied schemes; got selected for the final round in the Smart India Hackathon (SIH) India-level competition."
+    },
+    {
+      "title": "LIBRARY MODULE",
+      "description": "Module has interface to user and admin access to lend and return for user, add and report for admin. Used Structure for Storage in C and ArrayList in JAVA."
+    },
+    {
+      "title": "SimplifAi",
+      "description": "This is a web portal for an organization for tracking the attendance, work progress like what are the projects the employee assigned to and what are the tasks they did in it and also salary crediting options are also in this portal."
+    },
+    {
+      "title": "Blog Web App",
+      "description": "A web app that is used to see the blogs of several user creations and sharing their thoughts and also added authentication with Auth0."
+    }
+  ],
+  "achievements": [
+    "In NearTechPod out of 25 freshers I'm one of the three members chosen to client side project for working good and completing the tasks on time.",
+    "Achieved a perfect score of 600/600 (100%) in the Programming Round of TCS NQT IT and secured an impressive 74.30% overall, demonstrating exceptional technical expertise and strong aptitude skills.",
+    "My project IoT based Hospital Management and Patient Caring System [REDIX] filed for patent now it got granted.",
+    "Project FARMGROW was projected to The Trichy Collector and he forwarded it to CM CELL and also claimed Copyrights for this project."
+  ],
+  "interests": [
+    "Developing Website or Application",
+    "Learning New Technologies",
+    "Problem Solving",
+    "Environmental adaptability"
+  ],
+  "languages": [
+    "Tamil",
+    "English"
+  ]
+}
