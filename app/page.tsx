@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Mail, Phone, MapPin, Calendar, Award, Heart, Languages, Github, Linkedin } from "lucide-react"
+import { Mail, Phone, MapPin, Calendar, Award, Heart, Languages, Github, Linkedin, Download } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import portfolioData from "./data.json"
@@ -161,6 +161,14 @@ export default function Home() {
             </Card>
           </div>
           <div className="lg:col-span-1">
+            <div className="flex flex-col gap-4 mb-4">
+              <a href="/Stanko_Portfolio.pdf" download target="_blank" rel="noopener noreferrer">
+                <Button variant="secondary" className="w-full flex items-center gap-2">
+                  <Download className="w-5 h-5" />
+                  Download Resume
+                </Button>
+              </a>
+            </div>
             <Card>
               <CardHeader>
                 <CardTitle className="text-primary">Contact Information</CardTitle>
