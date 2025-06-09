@@ -6,17 +6,21 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Mail, Phone, MapPin, Calendar, Award, Heart, Languages, Github, Linkedin, Download } from "lucide-react"
+import { Mail, Phone, MapPin, Calendar, Award, Heart, Languages, Github, Linkedin, Download, Menu, Gamepad2, Code2, Copy, Check } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import portfolioData from "./data.json"
 import { scrollToSection } from "./utils"
 import { useEffect } from "react"
 import { PhonePopup } from "@/components/phone-popup"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
 export default function Home() {
   const { personalInfo, experience, education, skills, courses, projects, achievements, interests, languages } = portfolioData
   const [isPhonePopupOpen, setIsPhonePopupOpen] = useState(false);
+  const [openCodeDialog, setOpenCodeDialog] = useState<string | null>(null);
+  const [isCopied, setIsCopied] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -54,6 +58,19 @@ export default function Home() {
     window.location.href = `mailto:${personalInfo.email}`;
   };
 
+  const handleCopyCode = async (projectTitle: string) => {
+    try {
+      const currentProject = projects.find(project => project.title === projectTitle);
+      if (currentProject?.code) {
+        await navigator.clipboard.writeText(currentProject.code);
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 2000);
+      }
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+  };
+
   return (
     <div className="min-h-screen">
       {/* Header */}
@@ -73,48 +90,30 @@ export default function Home() {
             <div className="font-bold text-xl md:text-2xl text-primary">{personalInfo.name}</div>
           </div>
           <div className="flex items-center gap-4">
+            {/* Desktop Nav */}
             <nav className="hidden md:flex gap-6">
-              <Link 
-                href="#about" 
-                className="text-muted-foreground hover:text-primary transition-colors relative group dark:text-gray-300 dark:hover:text-white"
-                onClick={(e) => handleNavClick(e, "about")}
-              >
-                About
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-              <Link 
-                href="#experience" 
-                className="text-muted-foreground hover:text-primary transition-colors relative group dark:text-gray-300 dark:hover:text-white"
-                onClick={(e) => handleNavClick(e, "experience")}
-              >
-                Experience
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-              <Link 
-                href="#education" 
-                className="text-muted-foreground hover:text-primary transition-colors relative group dark:text-gray-300 dark:hover:text-white"
-                onClick={(e) => handleNavClick(e, "education")}
-              >
-                Education
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-              <Link 
-                href="#skills" 
-                className="text-muted-foreground hover:text-primary transition-colors relative group dark:text-gray-300 dark:hover:text-white"
-                onClick={(e) => handleNavClick(e, "skills")}
-              >
-                Skills
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-              <Link 
-                href="#projects" 
-                className="text-muted-foreground hover:text-primary transition-colors relative group dark:text-gray-300 dark:hover:text-white"
-                onClick={(e) => handleNavClick(e, "projects")}
-              >
-                Projects
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
-              </Link>
+              <Link href="#about" className="text-muted-foreground hover:text-primary transition-colors relative group dark:text-gray-300 dark:hover:text-white" onClick={(e) => handleNavClick(e, "about")}>About<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></Link>
+              <Link href="#experience" className="text-muted-foreground hover:text-primary transition-colors relative group dark:text-gray-300 dark:hover:text-white" onClick={(e) => handleNavClick(e, "experience")}>Experience<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></Link>
+              <Link href="#education" className="text-muted-foreground hover:text-primary transition-colors relative group dark:text-gray-300 dark:hover:text-white" onClick={(e) => handleNavClick(e, "education")}>Education<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></Link>
+              <Link href="#skills" className="text-muted-foreground hover:text-primary transition-colors relative group dark:text-gray-300 dark:hover:text-white" onClick={(e) => handleNavClick(e, "skills")}>Skills<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></Link>
+              <Link href="#projects" className="text-muted-foreground hover:text-primary transition-colors relative group dark:text-gray-300 dark:hover:text-white" onClick={(e) => handleNavClick(e, "projects")}>Projects<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></Link>
             </nav>
+            {/* Mobile Hamburger */}
+            <button className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Open menu">
+              <Menu className="w-6 h-6" />
+            </button>
+            {/* Mobile Menu Dropdown */}
+            {mobileMenuOpen && (
+              <div className="absolute top-16 left-0 w-full bg-background border-b shadow-md md:hidden animate-fade-in z-50">
+                <nav className="flex flex-col gap-2 p-4">
+                  <Link href="#about" className="py-2 px-4 rounded hover:bg-primary/10 transition-colors" onClick={(e) => { handleNavClick(e, 'about'); setMobileMenuOpen(false); }}>About</Link>
+                  <Link href="#experience" className="py-2 px-4 rounded hover:bg-primary/10 transition-colors" onClick={(e) => { handleNavClick(e, 'experience'); setMobileMenuOpen(false); }}>Experience</Link>
+                  <Link href="#education" className="py-2 px-4 rounded hover:bg-primary/10 transition-colors" onClick={(e) => { handleNavClick(e, 'education'); setMobileMenuOpen(false); }}>Education</Link>
+                  <Link href="#skills" className="py-2 px-4 rounded hover:bg-primary/10 transition-colors" onClick={(e) => { handleNavClick(e, 'skills'); setMobileMenuOpen(false); }}>Skills</Link>
+                  <Link href="#projects" className="py-2 px-4 rounded hover:bg-primary/10 transition-colors" onClick={(e) => { handleNavClick(e, 'projects'); setMobileMenuOpen(false); }}>Projects</Link>
+                </nav>
+              </div>
+            )}
             <ModeToggle />
           </div>
         </div>
@@ -256,9 +255,9 @@ export default function Home() {
         {/* Skills & Courses Section */}
         <section id="skills" className="py-8">
           <Tabs defaultValue="skills">
-            <TabsList className="mb-6">
-              <TabsTrigger value="skills">Skills</TabsTrigger>
-              <TabsTrigger value="courses">Courses</TabsTrigger>
+            <TabsList className="mb-6 w-full">
+              <TabsTrigger value="skills" className="flex-1">Skills</TabsTrigger>
+              <TabsTrigger value="courses" className="flex-1">Courses</TabsTrigger>
             </TabsList>
 
             <TabsContent value="skills">
@@ -302,6 +301,73 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <p>{project.description}</p>
+                  <div className="flex gap-2 mt-4">
+                    {project.code ? (
+                      <>
+                        <Button 
+                          variant="outline" 
+                          className="flex items-center gap-2"
+                          onClick={() => setOpenCodeDialog(project.title)}
+                        >
+                          <Code2 className="w-5 h-5" />
+                          Code
+                        </Button>
+                        <Dialog 
+                          open={openCodeDialog === project.title} 
+                          onOpenChange={(open) => !open && setOpenCodeDialog(null)}
+                        >
+                          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                            <DialogHeader>
+                              <div className="flex items-center gap-2">
+                                <DialogTitle>{project.title} Code</DialogTitle>
+                                <Button
+                                  size="icon"
+                                  variant="ghost"
+                                  onClick={() => handleCopyCode(project.title)}
+                                  className="h-8 w-8"
+                                >
+                                  {isCopied ? (
+                                    <Check className="h-4 w-4" />
+                                  ) : (
+                                    <Copy className="h-4 w-4" />
+                                  )}
+                                  <span className="sr-only">Copy code</span>
+                                </Button>
+                              </div>
+                            </DialogHeader>
+                            <div className="relative">
+                              <pre className="bg-muted p-4 rounded-lg overflow-x-auto mt-2">
+                                <code>{project.code}</code>
+                              </pre>
+                            </div>
+                          </DialogContent>
+                        </Dialog>
+                      </>
+                    ) : project.repo ? (
+                      <a
+                        href={project.repo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Button variant="outline" className="flex items-center gap-2">
+                          <Github className="w-5 h-5" />
+                          Code
+                        </Button>
+                      </a>
+                    ) : null}
+                    {project.title === "Tic Tac Toe Game" && (
+                      <a
+                        href={project.gameLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Button variant="outline" className="flex items-center gap-2">
+                          <Gamepad2 className="w-5 h-5" />
+                          Play
+                        </Button>
+                      </a>
+                    )}
+                  </div>
                 </CardContent>
               </Card>
             ))}
