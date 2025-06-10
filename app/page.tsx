@@ -161,7 +161,7 @@ export default function Home() {
           </div>
           <div className="lg:col-span-1">
             <div className="flex flex-col gap-4 mb-4">
-              <a href="/Stanko_Portfolio.pdf" download target="_blank" rel="noopener noreferrer">
+              <a href="/Stanko-Resume.pdf" download target="_blank" rel="noopener noreferrer">
                 <Button variant="secondary" className="w-full flex items-center gap-2">
                   <Download className="w-5 h-5" />
                   Download Resume
