@@ -14,6 +14,7 @@ import { scrollToSection } from "./utils"
 import { useEffect } from "react"
 import { PhonePopup } from "@/components/phone-popup"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { TellMeSomething } from "@/components/tell-me-something"
 
 export default function Home() {
   const { personalInfo, experience, education, skills, courses, projects, achievements, interests, languages } = portfolioData
@@ -95,8 +96,8 @@ export default function Home() {
               <Link href="#about" className="text-muted-foreground hover:text-primary transition-colors relative group dark:text-gray-300 dark:hover:text-white" onClick={(e) => handleNavClick(e, "about")}>About<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></Link>
               <Link href="#experience" className="text-muted-foreground hover:text-primary transition-colors relative group dark:text-gray-300 dark:hover:text-white" onClick={(e) => handleNavClick(e, "experience")}>Experience<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></Link>
               <Link href="#education" className="text-muted-foreground hover:text-primary transition-colors relative group dark:text-gray-300 dark:hover:text-white" onClick={(e) => handleNavClick(e, "education")}>Education<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></Link>
-              <Link href="#skills" className="text-muted-foreground hover:text-primary transition-colors relative group dark:text-gray-300 dark:hover:text-white" onClick={(e) => handleNavClick(e, "skills")}>Skills<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></Link>
               <Link href="#projects" className="text-muted-foreground hover:text-primary transition-colors relative group dark:text-gray-300 dark:hover:text-white" onClick={(e) => handleNavClick(e, "projects")}>Projects<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></Link>
+              <Link href="#skills" className="text-muted-foreground hover:text-primary transition-colors relative group dark:text-gray-300 dark:hover:text-white" onClick={(e) => handleNavClick(e, "skills")}>Skills<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span></Link>
             </nav>
             {/* Mobile Hamburger */}
             <button className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-primary" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Open menu">
@@ -109,8 +110,8 @@ export default function Home() {
                   <Link href="#about" className="py-2 px-4 rounded hover:bg-primary/10 transition-colors" onClick={(e) => { handleNavClick(e, 'about'); setMobileMenuOpen(false); }}>About</Link>
                   <Link href="#experience" className="py-2 px-4 rounded hover:bg-primary/10 transition-colors" onClick={(e) => { handleNavClick(e, 'experience'); setMobileMenuOpen(false); }}>Experience</Link>
                   <Link href="#education" className="py-2 px-4 rounded hover:bg-primary/10 transition-colors" onClick={(e) => { handleNavClick(e, 'education'); setMobileMenuOpen(false); }}>Education</Link>
-                  <Link href="#skills" className="py-2 px-4 rounded hover:bg-primary/10 transition-colors" onClick={(e) => { handleNavClick(e, 'skills'); setMobileMenuOpen(false); }}>Skills</Link>
                   <Link href="#projects" className="py-2 px-4 rounded hover:bg-primary/10 transition-colors" onClick={(e) => { handleNavClick(e, 'projects'); setMobileMenuOpen(false); }}>Projects</Link>
+                  <Link href="#skills" className="py-2 px-4 rounded hover:bg-primary/10 transition-colors" onClick={(e) => { handleNavClick(e, 'skills'); setMobileMenuOpen(false); }}>Skills</Link>
                 </nav>
               </div>
             )}
@@ -252,44 +253,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Skills & Courses Section */}
-        <section id="skills" className="py-8">
-          <Tabs defaultValue="skills">
-            <TabsList className="mb-6 w-full">
-              <TabsTrigger value="skills" className="flex-1">Skills</TabsTrigger>
-              <TabsTrigger value="courses" className="flex-1">Courses</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="skills">
-              <h2 className="text-3xl font-bold text-primary mb-6">Skills</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {skills.map((skill, index) => (
-                  <Card key={index} className="overflow-hidden">
-                    <CardHeader>
-                      <CardTitle className="text-primary">{skill}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p>Proficient in {skill} with practical experience in various projects and applications.</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
-            <TabsContent value="courses">
-              <h2 className="text-3xl font-bold text-primary mb-6">Courses</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {courses.map((course, index) => (
-                  <Card key={index}>
-                    <CardContent className="pt-6">
-                      <p>{course}</p>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </TabsContent>
-          </Tabs>
-        </section>
-
         {/* Projects Section */}
         <section id="projects" className="py-8">
           <h2 className="text-3xl font-bold text-primary mb-6">Projects</h2>
@@ -374,6 +337,44 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Skills & Courses Section */}
+        <section id="skills" className="py-8">
+          <Tabs defaultValue="skills">
+            <TabsList className="mb-6 w-full">
+              <TabsTrigger value="skills" className="flex-1">Skills</TabsTrigger>
+              <TabsTrigger value="courses" className="flex-1">Courses</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="skills">
+              <h2 className="text-3xl font-bold text-primary mb-6">Skills</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {skills.map((skill, index) => (
+                  <Card key={index} className="overflow-hidden">
+                    <CardHeader>
+                      <CardTitle className="text-primary">{skill}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p>Proficient in {skill} with practical experience in various projects and applications.</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </TabsContent>
+            <TabsContent value="courses">
+              <h2 className="text-3xl font-bold text-primary mb-6">Courses</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {courses.map((course, index) => (
+                  <Card key={index}>
+                    <CardContent className="pt-6">
+                      <p>{course}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </TabsContent>
+          </Tabs>
+        </section>
+
         {/* Achievements Section */}
         <section id="achievements" className="py-8">
           <h2 className="text-3xl font-bold text-primary mb-6">Achievements & Awards</h2>
@@ -426,6 +427,9 @@ export default function Home() {
           </div>
         </section>
       </main>
+
+      {/* Tell Me Something Section */}
+      <TellMeSomething />
 
       {/* Footer */}
       <footer className="border-t py-6">
